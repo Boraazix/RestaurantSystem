@@ -18,7 +18,7 @@
     </main>
 
     <footer>
-        <?php include 'templates/footer.inc.php' ?>
+        <p>&copy;2023 - Matheus Vieira, Russell Edward & Vitor Gabriel</p>
     </footer>
 </body>
 

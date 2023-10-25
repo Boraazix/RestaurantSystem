@@ -2,11 +2,11 @@
 
 class Usuario extends \RedBeanPHP\SimpleModel
 {
-    public $nome; //string
-    public $email; //string
-    public $senha; //string
-    public $nascimento; //string
-    public $perfil; //char (G:Gerente, C:Cliente, X:Caixa)
+    public $nome; 
+    public $email; 
+    public $senha; 
+    public $nascimento; 
+    public $perfil; 
 
     public function __construct($nome, $email, $senha, $nascimento, $perfil)
     {
