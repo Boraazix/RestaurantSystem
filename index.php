@@ -14,6 +14,11 @@
     </header>
 
     <main>
+        <?php
+        require_once 'classes/usuarioservices.class.php';
+        $nome='Simba'; $email='simba@mail'; $senha='123'; $nascimento= new DateTime(); $perfil=1;
+        UsuarioServices::salvar($nome, $email, $senha, $nascimento, $perfil);
+        ?>
         
     </main>
 

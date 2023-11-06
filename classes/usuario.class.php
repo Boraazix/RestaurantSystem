@@ -16,4 +16,15 @@ class Usuario extends \RedBeanPHP\SimpleModel
         $this->nascimento=$nascimento;
         $this->perfil=$perfil;
     }
+
+    public static function construir($usuarioEnt)
+    {
+        $usuarioBean = R::dispense('usuario');
+        $usuarioBean->nome=$usuarioEnt->nome;
+        $usuarioBean->email=$usuarioEnt->email;
+        $usuarioBean->senha=$usuarioEnt->senha;
+        $usuarioBean->nascimento=$usuarioEnt->nascimento;
+        $usuarioBean->perfil=$usuarioEnt->perfil;
+        return $usuarioBean;
+    }
 }
