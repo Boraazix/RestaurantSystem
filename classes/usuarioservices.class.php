@@ -29,16 +29,25 @@ class UsuarioServices
 
         R::close();
     }
+    
+    public static function atualizar($usuario)
+    {
+        self::setupConnection();
+
+        R::store($usuario);
+
+        R::close();
+    }
 
     public static function buscarTodos()
     {
         self::setupConnection();
 
-        $devs = R::findAll('usuario');
+        $usuario = R::findAll('usuario');
 
         R::close();
 
-        return $devs;
+        return $usuario;
     }
 
     public static function deletar($id)
@@ -54,10 +63,10 @@ class UsuarioServices
     {
         self::setupConnection();
 
-        $dev = R::load('usuario', $id);
+        $usuario = R::load('usuario', $id);
 
         R::close();
 
-        return $dev;
+        return $usuario;
     }
 }
