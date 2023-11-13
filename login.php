@@ -10,7 +10,6 @@
 
 <body>
     <header>
-        <h2>DevWeb2023</h2>
     </header>
 
     <main>

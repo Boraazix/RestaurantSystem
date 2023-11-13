@@ -1,5 +1,3 @@
-<h2>DevWeb2023</h2>
-
 <?php
     require_once dirname(__DIR__) . '/classes/util.class.php';
 

@@ -1,20 +1,9 @@
 <?php
     require_once '../classes/r.class.php';
+    require_once '../classes/usuarioservices.class.php';
 
     R::setup('mysql:host=localhost;dbname=restaurante', 'root', '');
 
-    $perfil = R::dispense('perfil');
-    $perfil->nome = "Gerente";
+    UsuarioServices::salvar("admin", "admin@mail.com", "admin", "2004-07-15 19:30:00", 1);
 
-    R::store($perfil);
-
-    $perfil = R::dispense('perfil');
-    $perfil->nome = "Caixa";
-
-    R::store($perfil);
-
-    $perfil = R::dispense('perfil');
-    $perfil->nome = "Cliente";
-
-    R::store($perfil);
     R::close();
