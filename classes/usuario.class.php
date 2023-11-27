@@ -1,5 +1,6 @@
 <?php
 
+// classes meramente ilustrativas
 class Usuario extends \RedBeanPHP\SimpleModel
 {
     public $nome; 

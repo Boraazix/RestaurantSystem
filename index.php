@@ -15,6 +15,10 @@
 
     <main>
         <h1>Notícias do Restaurante</h1>
+
+        <?php
+            
+        ?>
     </main>
 
     <footer>

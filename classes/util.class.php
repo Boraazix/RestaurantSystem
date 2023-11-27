@@ -1,4 +1,5 @@
 <?php
+
 class Util
 {
     public static function logout()

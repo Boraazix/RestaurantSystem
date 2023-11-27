@@ -8,13 +8,13 @@
                 <details>
                     <summary>Cadastros</summary>
                     <a href="#">Cadastro de Usuários</a><br>
-                    <a href="#">Cadastro de Perfis</a><br>
+                    <a href="cadastroperfil.php">Cadastro de Perfis</a><br>
                     <a href="#">Cadastro de Notícias</a>
                 </details>
 
                 <details>
                     <summary>Relatórios</summary>
-                    <a href="#">Relatório de Usuários</a>
+                    <a href="#">Relatório de Usuários</a><br>
                     <a href="#">Relatório de Perfis</a>
                 </details>
                 <?php
