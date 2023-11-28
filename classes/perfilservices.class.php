@@ -37,7 +37,7 @@ class PerfilServices
 
         R::close();
 
-        return $perfil;
+        return $perfis;
     }
 
     public static function deletar($id)
@@ -47,6 +47,17 @@ class PerfilServices
         R::trash('perfil', $id);
 
         R::close();
+    }
+
+    public static function buscarPorId($id)
+    {
+        self::setupConnection();
+
+        $perfil = R::load('perfil', $id);
+
+        R::close();
+        
+        return $perfil;
     }
 
     public static function buscarNovoId()

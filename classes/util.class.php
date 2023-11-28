@@ -32,7 +32,7 @@ class Util
             header('Location:index.php');
         }
         else {
-            header('Location:login.php');
+            header('Location:login.php?alert=1');
         }
 
         R::close();

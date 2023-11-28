@@ -1,3 +1,17 @@
+<?php
+if(isset($_GET['alert']))
+{
+    switch($_GET['alert'])
+    {
+        case 1:
+            ?>
+            <script>alert("Dados de login inválidos!")</script>
+            <?php
+            break;
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="pt-BR">
 

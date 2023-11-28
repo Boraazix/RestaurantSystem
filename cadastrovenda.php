@@ -1,11 +1,11 @@
 <?php
 require_once 'classes/util.class.php';
-require_once 'classes/perfilservices.class.php';
+require_once 'classes/noticiaservices.class.php';
 if(!Util::logged())
 {
     header('Location:login.php');
 } 
-if($_SESSION['perfil']!=1) // somente ADM
+if($_SESSION['perfil']!=3) // somente caixa
 {
     header('Location:index.php');
 }
@@ -15,7 +15,7 @@ if(isset($_GET['alert']))
     {
         case 1:
             ?>
-            <script>alert("Perfil cadastrado com sucesso.")</script>
+            <script>alert("Venda cadastrada com sucesso.")</script>
             <?php
             break;
     }
@@ -37,17 +37,8 @@ if(isset($_GET['alert']))
     </header>
 
     <main>
-        <h1>Cadastro de Perfis</h1>
-        <form action="processos/novoperfil.php" method="post">
-            <label for="id">Id: </label>
-            <input type="number" name="id" id="id" value="<?=PerfilServices::buscarNovoId()?>" disabled style="width: 2rem;"><br>
-            <label for="name">Nome: </label>
-            <input type="text" name="name" id="name"><br>
-            <button type="submit">Cadastrar</button>
-        </form>
-        <?php
-            
-        ?>
+        <h1>Cadastro de Vendas</h1>
+        
     </main>
 
     <footer>

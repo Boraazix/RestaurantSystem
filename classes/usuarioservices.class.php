@@ -16,25 +16,43 @@ class UsuarioServices
         }
     }
 
-    public static function salvar($nome, $email, $senha, $nascimento, $perfil)
+    public static function salvar($nome, $email, $senha, $nascimento, $perfil, $carteira, $ativo, $pin)
     {
         self::setupConnection();
 
         $usuario = R::dispense('usuario');
 
-        $usuario = new Usuario($nome, $email, $senha, $nascimento, $perfil);
-        $usuarioBean = Usuario::construir($usuario);
+        $usuario->nome = $nome;
+        $usuario->email = $email;
+        $usuario->senha = md5($senha . 'antagonista');
+        $usuario->nascimento = $nascimento;
+        $usuario->perfil = $perfil;
+        $usuario->carteira = $carteira;
+        $usuario->ativo = $ativo;
+        $usuario->pin = md5($pin . 'antagonista');
 
-        R::store($usuarioBean);
+        R::store($usuario);
 
         R::close();
     }
     
-    public static function atualizar($usuario)
+    public static function atualizar($id, $nome, $email, $senha, $nascimento, $perfil, $carteira, $ativo, $pin)
     {
         self::setupConnection();
 
-        R::store($usuario);
+        $usuarioEditado = R::dispense('usuario');
+
+        $usuarioEditado->id = $id;
+        $usuarioEditado->nome = $nome;
+        $usuarioEditado->email = $email;
+        $usuarioEditado->senha = md5($senha . 'antagonista');
+        $usuarioEditado->nascimento = $nascimento;
+        $usuarioEditado->perfil = $perfil;
+        $usuarioEditado->carteira = $carteira;
+        $usuarioEditado->ativo = $ativo;
+        $usuarioEditado->pin = md5($pin . 'antagonista');
+
+        R::store($usuarioEditado);
 
         R::close();
     }
