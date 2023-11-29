@@ -12,7 +12,7 @@ if (isset($_GET['alert'])) {
     switch ($_GET['alert']) {
         case 1:
             ?>
-            <script>alert("Notícia cadastrado com sucesso.")</script>
+            <!-- <script>alert("Notícia cadastrado com sucesso.")</script> -->
             <?php
             break;
     }
@@ -40,6 +40,7 @@ if (isset($_GET['alert'])) {
 
         <form action="processos/novanoticia.php" method="post">
             <input type="text" name="titulo" id="titulo" placeholder="Título da Notícia">
+            <input type="hidden" name="id" value="<?= $_SESSION['id'] ?>">
 
             <script>
                 tinymce.init({
