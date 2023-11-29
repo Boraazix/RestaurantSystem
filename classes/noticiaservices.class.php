@@ -16,16 +16,17 @@ class NoticiaServices
         }
     }
 
-    public static function salvar($titulo, $texto, $data)
+    public static function salvar($titulo, $conteudo, $data)
     {
         self::setupConnection();
 
         $noticia = R::dispense('noticia');
 
-        $noticia = new Noticia($titulo, $texto, $data);
-        $noticiaBean = Noticia::construir($noticia);
+        $noticia->titulo = $titulo;
+        $noticia->conteudo = $conteudo;
+        $noticia->data = $data;
 
-        R::store($noticiaBean);
+        R::store($noticia);
 
         R::close();
     }

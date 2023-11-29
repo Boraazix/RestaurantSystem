@@ -7,9 +7,9 @@
 
     UsuarioServices::salvar('Simba', 'simba@mail', '123', date('Y-m-d'), 1, false, true, 1234);
 
-    // PerfilServices::salvar("Administrador");
-    // PerfilServices::salvar("Gerente");
-    // PerfilServices::salvar("Caixa");
-    // PerfilServices::salvar("Cliente");
+    PerfilServices::salvar("Administrador");
+    PerfilServices::salvar("Gerente");
+    PerfilServices::salvar("Caixa");
+    PerfilServices::salvar("Cliente");
 
     R::close();
