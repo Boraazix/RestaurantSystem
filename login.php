@@ -1,17 +1,3 @@
-<?php
-if(isset($_GET['alert']))
-{
-    switch($_GET['alert'])
-    {
-        case 1:
-            ?>
-            <script>alert("Dados de login inválidos!")</script>
-            <?php
-            break;
-    }
-}
-?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -20,6 +6,24 @@ if(isset($_GET['alert']))
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <style>
+        <?php
+        if(isset($_GET['alert'])) {
+            switch($_GET['alert']) {
+                case 1:
+                    ?>
+                    #alert1 {display: contents !important;}
+                    <?php
+                    break;
+                case 2:
+                    ?>
+                    #alert2 {display: contents !important;}
+                    <?php
+                    break;
+            }
+        }
+        ?>
+    </style>
 </head>
 
 <body>
@@ -30,6 +34,9 @@ if(isset($_GET['alert']))
         <form action="autenticar.php" method="post">
             <fieldset>
                 <legend>Dados</legend>
+
+                <div id="alert1" style="display: none;"><label style="color: red;">Dados de login inválidos!</label><br></div>
+                <div id="alert2" style="display: none;"><label style="color: red;">O usuário está desativado do sistema :/</label><br></div>
 
                 <label for="email">Email: </label>
                 <input type="email" name="email" id="email">

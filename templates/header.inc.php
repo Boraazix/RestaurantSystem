@@ -1,6 +1,6 @@
 <?php
     require_once dirname(__DIR__) . '/classes/util.class.php';
-
+    
     if(Util::logged()){
         ?>
         <details <?php if($_SESSION['perfil']>3) echo"hidden";?>>
@@ -9,7 +9,7 @@
             <a href="cadastroperfil.php" <?php if($_SESSION['perfil']!=1) echo"hidden";?>>Cadastro de Perfis <br></a>
             <a href="cadastronoticia.php" <?php if($_SESSION['perfil']>2) echo"hidden";?>>Cadastro de Notícias <br></a>
             <a href="cadastroproduto.php" <?php if($_SESSION['perfil']>2) echo"hidden";?>>Cadastro de Produtos <br></a>
-            <a href="cadastrovenda.php" <?php if($_SESSION['perfil']!=3) echo"hidden";?>>Cadastro de Vendas</a>
+            <a href="cadastrovenda.php" <?php if($_SESSION['perfil']!=3 && $_SESSION['perfil']!=1) echo"hidden";?>>Cadastro de Vendas</a>
         </details>
 
         <details>
@@ -17,7 +17,7 @@
             <a href="relatorioprodutos.php">Relatório de Produtos <br></a>
             <a href="relatoriousuarios.php" <?php if($_SESSION['perfil']>2) echo"hidden";?>>Relatório de Usuários <br></a>
             <a href="relatorioperfis.php" <?php if($_SESSION['perfil']>2) echo"hidden";?>>Relatório de Perfis <br></a>
-            <a href="relatoriodebitos.php" <?php if($_SESSION['perfil']!=3) echo"hidden";?>>Relatório de Débitos</a>
+            <a href="relatoriodebitos.php" <?php if($_SESSION['perfil']!=3 && $_SESSION['perfil']!=1) echo"hidden";?>>Relatório de Débitos</a>
         </details>
         
         <a href="logout.php">Logout</a>

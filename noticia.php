@@ -1,3 +1,8 @@
+<?php
+if (!isset($_GET['id'])) {
+    header('Location:noticias.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -15,28 +20,26 @@
 
     <main>
         <h1>Notícias do Restaurante</h1>
-
-        <?php
+        <div>
+            <?php
             require_once 'classes/noticiaservices.class.php';
             require_once 'classes/usuarioservices.class.php';
 
-            if(isset($_GET['id'])){
-                $noticia = NoticiaServices::buscarPorId($_GET['id']);
+            $noticia = NoticiaServices::buscarPorId($_GET['id']);
 
 
-                $str = "<div>";
-                $str .= "<h3>$noticia->titulo</h3>";
-                $str .= "$noticia->conteudo";
-                $autor = UsuarioServices::buscarPorId($noticia->autor);
-                $str .= "Postado por $autor->nome em $noticia->data";
+            $str = "<h2>$noticia->titulo</h2>";
+            $str .= "$noticia->conteudo";
+            $autor = UsuarioServices::buscarPorId($noticia->autor);
+            $str .= "<hr><i>Postado por $autor->nome em $noticia->data</i>";
 
-                echo $str . "</div>";
-            }
-        ?>
+            echo $str;
+            ?>
+        </div>
     </main>
 
     <footer>
-        <p>&copy;2023 - Matheus Vieira, Russell Edward & Vitor Gabriel</p>
+        <?php include 'templates/footer.inc.php' ?>
     </footer>
 </body>
 

@@ -5,20 +5,9 @@ if(!Util::logged())
 {
     header('Location:login.php');
 } 
-if($_SESSION['perfil']!=3) // somente caixa
+if($_SESSION['perfil']!=3 && $_SESSION['perfil']!=1) // somente caixa e ADM
 {
     header('Location:index.php');
-}
-if(isset($_GET['alert']))
-{
-    switch($_GET['alert'])
-    {
-        case 1:
-            ?>
-            <script>alert("")</script>
-            <?php
-            break;
-    }
 }
 ?>
 <!DOCTYPE html>
@@ -42,9 +31,7 @@ if(isset($_GET['alert']))
     </main>
 
     <footer>
-        <a href="index.php">Página Inicial</a>
-        <hr>
-        <p>&copy;2023 - Matheus Vieira, Russell Edward & Vitor Gabriel</p>
+        <?php include 'templates/footer.inc.php' ?>
     </footer>
 </body>
 

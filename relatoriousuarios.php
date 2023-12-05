@@ -1,6 +1,7 @@
 <?php
 require_once 'classes/util.class.php';
-require_once 'classes/noticiaservices.class.php';
+require_once 'classes/usuarioservices.class.php';
+require_once 'classes/perfilservices.class.php';
 if(!Util::logged())
 {
     header('Location:login.php');
@@ -8,17 +9,6 @@ if(!Util::logged())
 if($_SESSION['perfil']>2) // ADM e Gerente podem
 {
     header('Location:index.php');
-}
-if(isset($_GET['alert']))
-{
-    switch($_GET['alert'])
-    {
-        case 1:
-            ?>
-            <script>alert("")</script>
-            <?php
-            break;
-    }
 }
 ?>
 <!DOCTYPE html>
@@ -38,13 +28,43 @@ if(isset($_GET['alert']))
 
     <main>
         <h1>Relatório de Usuários</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Nascimento</th>
+                    <th>Perfil</th>
+                    <th>Carteira</th>
+                    <th>Ativo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $usuarios = UsuarioServices::buscarTodos();
+                foreach ($usuarios as $usuario) {
+                    $str = "<tr>";
+
+                    $str .= "<td>$usuario->id</td>";
+                    $str .= "<td>$usuario->nome</td>";
+                    $str .= "<td>$usuario->email</td>";
+                    $str .= "<td>" . date('d/m/Y', strtotime($usuario->nascimento)) . "</td>";
+                    $str .= "<td>" . PerfilServices::buscarPorId($usuario->perfil)->nome . "</td>";
+                    $str .= "<td " . ($usuario->carteira ? 'style="color:green">Sim' : 'style="color:red">Não') . "</td>";
+                    $str .= "<td " . ($usuario->ativo ? 'style="color:green">Sim' : 'style="color:red">Não') . "</td>";
+
+                    echo $str . "</tr>";
+                }
+                ?>
+            </tbody>
+        </table>
         
     </main>
 
     <footer>
-        <a href="index.php">Página Inicial</a>
-        <hr>
-        <p>&copy;2023 - Matheus Vieira, Russell Edward & Vitor Gabriel</p>
+        <?php include 'templates/footer.inc.php' ?>
     </footer>
 </body>
 

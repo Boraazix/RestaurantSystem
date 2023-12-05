@@ -1,7 +1,6 @@
 <?php
 
 require_once 'r.class.php';
-require_once 'usuario.class.php';
 
 class UsuarioServices
 {

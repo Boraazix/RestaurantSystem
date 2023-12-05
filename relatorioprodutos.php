@@ -1,18 +1,7 @@
 <?php
 require_once 'classes/util.class.php';
-require_once 'classes/noticiaservices.class.php';
+require_once 'classes/produtoservices.class.php';
 
-if(isset($_GET['alert']))
-{
-    switch($_GET['alert'])
-    {
-        case 1:
-            ?>
-            <script>alert("")</script>
-            <?php
-            break;
-    }
-}
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -31,13 +20,37 @@ if(isset($_GET['alert']))
 
     <main>
         <h1>Relatório de Produtos</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                    <th>Preço</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $produtos = ProdutoServices::buscarTodosCrescente();
+
+                foreach($produtos as $produto)
+                {
+                    $str='<tr>';
+                    $str.= "<td>$produto->id</td>";
+                    $str.= "<td>$produto->nome</td>";
+                    $str.= "<td>$produto->descricao</td>";
+                    $str.= "<td>$produto->preco</td>";
+                    echo $str . '</tr>';
+                }
+                ?>
+            </tbody>
+        </table>
         
     </main>
 
     <footer>
-        <a href="index.php">Página Inicial</a>
-        <hr>
-        <p>&copy;2023 - Matheus Vieira, Russell Edward & Vitor Gabriel</p>
+        <?php include 'templates/footer.inc.php' ?>
     </footer>
 </body>
 

@@ -9,24 +9,6 @@ if ($_SESSION['perfil'] > 2) // ADM e Gerente podem
 {
     header('Location:index.php');
 }
-if (isset($_GET['alert'])) {
-    switch ($_GET['alert']) {
-        case 1:
-?>
-            <script>
-                alert("Usuário cadastrado com sucesso.")
-            </script>
-        <?php
-            break;
-        case 2:
-        ?>
-            <script>
-                alert("Alterações realizadas com sucesso.")
-            </script>
-<?php
-            break;
-    }
-}
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -36,6 +18,24 @@ if (isset($_GET['alert'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema do Restaurante</title>
+    <style>
+        <?php
+        if(isset($_GET['alert'])) {
+            switch($_GET['alert']) {
+                case 1:
+                    ?>
+                    #alert1 {display: contents !important;}
+                    <?php
+                    break;
+                case 2:
+                    ?>
+                    #alert2 {display: contents !important;}
+                    <?php
+                    break;
+            }
+        }
+        ?>
+    </style>
 </head>
 
 <body>
@@ -46,6 +46,10 @@ if (isset($_GET['alert'])) {
     <main>
         <h1>Cadastro de Usuários</h1>
         <form action="processos/novousuario.php" method="post">
+
+            <div id="alert1" style="display: none;"><label style="color: green;">Usuário cadastrado com sucesso.</label><br></div>
+            <div id="alert2" style="display: none;"><label style="color: green;">Alterações realizadas com sucesso.</label><br></div>
+            
             <fieldset>
                 <legend>Dados</legend>
                 <label for="nome">Nome: </label>
@@ -103,8 +107,8 @@ if (isset($_GET['alert'])) {
                     $str .= "<td>$usuario->email</td>";
                     $str .= "<td>" . date('d/m/Y', strtotime($usuario->nascimento)) . "</td>";
                     $str .= "<td>" . PerfilServices::buscarPorId($usuario->perfil)->nome . "</td>";
-                    $str .= "<td>" . ($usuario->carteira ? 'Sim' : 'Não') . "</td>";
-                    $str .= "<td>" . ($usuario->ativo ? 'Sim' : 'Não') . "</td>";
+                    $str .= "<td " . ($usuario->carteira ? 'style="color:green">Sim' : 'style="color:red">Não') . "</td>";
+                    $str .= "<td " . ($usuario->ativo ? 'style="color:green">Sim' : 'style="color:red">Não') . "</td>";
                     $str .= "<td><a href=\"edicoes/edicaousuario.php?id=$usuario->id\">Editar</a></td>";
 
                     echo $str . "</tr>";
@@ -115,9 +119,7 @@ if (isset($_GET['alert'])) {
     </main>
 
     <footer>
-        <a href="index.php">Página Inicial</a>
-        <hr>
-        <p>&copy;2023 - Matheus Vieira, Russell Edward & Vitor Gabriel</p>
+        <?php include 'templates/footer.inc.php' ?>
     </footer>
 </body>
 

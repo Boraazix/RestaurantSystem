@@ -67,16 +67,14 @@ if (!isset($_GET['id']))
                 </select><br>
                 <input type="checkbox" name="carteira" id="carteira" value="1" <?=($usuario->carteira?'checked':'')?>><label for="carteira">Carteira</label><br>
                 <input type="checkbox" name="ativo" id="ativo" value="1" <?=($usuario->ativo?'checked':'')?>><label for="ativo">Ativo</label><br>
-                <label for="pin">Pin: </label><input type="number" name="pin" id="pin" style="width: 3.5rem;" required><br>
+                <label for="pin">Pin: </label><input type="number" name="pin" id="pin" style="width: 3.5rem;" required min="1000" max="9999"><br>
                 <button type="submit">Salvar alterações</button>
             </fieldset>
         </form>
     </main>
 
     <footer>
-        <a href="index.php">Página Inicial</a>
-        <hr>
-        <p>&copy;2023 - Matheus Vieira, Russell Edward & Vitor Gabriel</p>
+        <?php include 'templates/footer.inc.php' ?>
     </footer>
 </body>
 

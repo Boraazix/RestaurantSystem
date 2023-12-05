@@ -1,7 +1,6 @@
 <?php
 
 require_once 'r.class.php';
-require_once 'perfil.class.php';
 
 class PerfilServices 
 {

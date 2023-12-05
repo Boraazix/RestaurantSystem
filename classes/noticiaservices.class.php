@@ -1,7 +1,6 @@
 <?php
 
 require_once 'r.class.php';
-require_once 'noticia.class.php';
 
 class NoticiaServices
 {
@@ -16,13 +15,14 @@ class NoticiaServices
         }
     }
 
-    public static function salvar($titulo, $conteudo, $data, $autor)
+    public static function salvar($titulo, $resumo, $conteudo, $data, $autor)
     {
         self::setupConnection();
 
         $noticia = R::dispense('noticia');
 
         $noticia->titulo = $titulo;
+        $noticia->resumo = $resumo;
         $noticia->conteudo = $conteudo;
         $noticia->data = $data;
         $noticia->autor = $autor;
@@ -37,6 +37,17 @@ class NoticiaServices
         self::setupConnection();
 
         $noticias = R::findAll('noticia');
+
+        R::close();
+
+        return $noticias;
+    }
+
+    public static function buscarTodosDecrescente()
+    {
+        self::setupConnection();
+
+        $noticias = R::findAll('noticia', ' ORDER BY data desc');
 
         R::close();
 

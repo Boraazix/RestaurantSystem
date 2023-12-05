@@ -23,11 +23,12 @@
             $noticias = NoticiaServices::buscarTres();
 
             foreach($noticias as $noticia) {
-                $str = "<div>";
+                $str = "<div style=\"margin-bottom:2rem\">";
                 $str .= "<h3>$noticia->titulo</h3>";
-                $str .= "$noticia->conteudo";
+                $str .= "<p style=\"line-height: 2rem\">$noticia->resumo<br>";
                 $autor = UsuarioServices::buscarPorId($noticia->autor);
-                $str .= "Postado por $autor->nome em $noticia->data";
+                $str .= "<i>Postado por $autor->nome em $noticia->data</i></p>";
+                $str .= "<a href=\"noticia.php?id=$noticia->id\">Ver notícia</a>";
 
                 echo $str . "</div>";
             }

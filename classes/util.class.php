@@ -21,21 +21,47 @@ class Util
 
         R::setup('mysql:host=localhost;dbname=restaurante', 'root', '');
 
-        $user = R::findOne('usuario', 'email = ? and senha = ?', [$email, md5($senha . 'antagonista')]);
+        $usuario = R::findOne('usuario', 'email = ? and senha = ?', [$email, md5($senha . 'antagonista')]);
 
-        if (isset($user)) {
-            session_start();
-            $_SESSION['id'] = $user['id'];
-            $_SESSION['nome'] = $user['nome'];
-            $_SESSION['email'] = $user['email'];
-            $_SESSION['perfil'] = $user['perfil'];
+        if (isset($usuario)) {
 
-            header('Location:index.php');
+
+            if(!$usuario['ativo'])
+            {
+                header('Location:login.php?alert=2');
+            }
+            else
+            {
+                session_start();
+
+                $_SESSION['id'] = $usuario['id'];
+                $_SESSION['nome'] = $usuario['nome'];
+                $_SESSION['email'] = $usuario['email'];
+                $_SESSION['perfil'] = $usuario['perfil'];
+                $_SESSION['carteira'] = $usuario['carteira'];
+                $_SESSION['ativo'] = $usuario['ativo'];
+    
+                header('Location:index.php');
+            }
         }
         else {
             header('Location:login.php?alert=1');
         }
 
         R::close();
+    }
+
+    public static function validarPin($id, $pin)
+    {
+        require_once 'r.class.php';
+
+        R::setup('mysql:host=localhost;dbname=restaurante', 'root', '');
+
+        $usuario = R::load('usuario', $id);
+
+        if(md5($pin . 'antagonista')==$usuario['pin'])
+            return true;
+        
+        return false;
     }
 }

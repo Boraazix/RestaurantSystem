@@ -1,6 +1,6 @@
 <?php
 require_once 'classes/util.class.php';
-require_once 'classes/noticiaservices.class.php';
+require_once 'classes/perfilservices.class.php';
 if(!Util::logged())
 {
     header('Location:login.php');
@@ -8,17 +8,6 @@ if(!Util::logged())
 if($_SESSION['perfil']>2) // ADM e Gerente podem
 {
     header('Location:index.php');
-}
-if(isset($_GET['alert']))
-{
-    switch($_GET['alert'])
-    {
-        case 1:
-            ?>
-            <script>alert("")</script>
-            <?php
-            break;
-    }
 }
 ?>
 <!DOCTYPE html>
@@ -38,13 +27,33 @@ if(isset($_GET['alert']))
 
     <main>
         <h1>Relatório de Perfis</h1>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nome</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                $perfis = PerfilServices::buscarTodos();
+
+                foreach($perfis as $perfil)
+                {
+                    $str='<tr>';
+                    $str.= "<td>$perfil->id</td>";
+                    $str.= "<td>$perfil->nome</td>";
+                    echo $str . '</tr>';
+                }
+                ?>
+            </tbody>
+        </table>
         
     </main>
 
     <footer>
-        <a href="index.php">Página Inicial</a>
-        <hr>
-        <p>&copy;2023 - Matheus Vieira, Russell Edward & Vitor Gabriel</p>
+        <?php include 'templates/footer.inc.php' ?>
     </footer>
 </body>
 

@@ -5,20 +5,9 @@ if(!Util::logged())
 {
     header('Location:login.php');
 } 
-if($_SESSION['perfil']!=3) // somente caixa
+if($_SESSION['perfil']!=3 && $_SESSION['perfil']!=1) // somente caixa e ADM
 {
     header('Location:index.php');
-}
-if(isset($_GET['alert']))
-{
-    switch($_GET['alert'])
-    {
-        case 1:
-            ?>
-            <script>alert("Venda cadastrada com sucesso.")</script>
-            <?php
-            break;
-    }
 }
 ?>
 <!DOCTYPE html>
@@ -29,6 +18,19 @@ if(isset($_GET['alert']))
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema do Restaurante</title>
+    <style>
+        <?php
+        if(isset($_GET['alert'])) {
+            switch($_GET['alert']) {
+                case 1:
+                    ?>
+                    #alert1 {display: contents !important;}
+                    <?php
+                    break;
+            }
+        }
+        ?>
+    </style>
 </head>
 
 <body>
@@ -39,12 +41,12 @@ if(isset($_GET['alert']))
     <main>
         <h1>Cadastro de Vendas</h1>
         
+        <div id="alert1" style="display: none;"><label style="color: green;">Venda cadastrada com sucesso.</label><br></div>
+        
     </main>
 
     <footer>
-        <a href="index.php">Página Inicial</a>
-        <hr>
-        <p>&copy;2023 - Matheus Vieira, Russell Edward & Vitor Gabriel</p>
+        <?php include 'templates/footer.inc.php' ?>
     </footer>
 </body>
 

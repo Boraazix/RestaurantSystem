@@ -20,23 +20,25 @@
             require_once 'classes/noticiaservices.class.php';
             require_once 'classes/usuarioservices.class.php';
 
-            $noticias = NoticiaServices::buscarTodos();
+            $noticias = NoticiaServices::buscarTodosDecrescente();
 
             foreach($noticias as $noticia) {
-                $str = "<div>";
+                $str = "<div style=\"margin-bottom:2rem\">";
                 $str .= "<h3>$noticia->titulo</h3>";
-                $str .= "$noticia->conteudo";
+                $str .= "<p style=\"line-height: 2rem\">$noticia->resumo<br>";
                 $autor = UsuarioServices::buscarPorId($noticia->autor);
-                $str .= "Postado por $autor->nome em $noticia->data";
-                $str .= "<br><a href=\"noticia.php/id=$noticia->id\">Ver notícia</a>";
+                $str .= "<i>Postado por $autor->nome em $noticia->data</i></p>";
+                $str .= "<a href=\"noticia.php?id=$noticia->id\">Ver notícia</a>";
 
                 echo $str . "</div>";
             }
+            
+            
         ?>
     </main>
 
     <footer>
-        <p>&copy;2023 - Matheus Vieira, Russell Edward & Vitor Gabriel</p>
+        <?php include 'templates/footer.inc.php' ?>
     </footer>
 </body>
 
