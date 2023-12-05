@@ -20,7 +20,7 @@
             require_once 'classes/noticiaservices.class.php';
             require_once 'classes/usuarioservices.class.php';
 
-            $noticias = NoticiaServices::buscarTres();
+            $noticias = NoticiaServices::buscarTodos();
 
             foreach($noticias as $noticia) {
                 $str = "<div>";
@@ -28,12 +28,11 @@
                 $str .= "$noticia->conteudo";
                 $autor = UsuarioServices::buscarPorId($noticia->autor);
                 $str .= "Postado por $autor->nome em $noticia->data";
+                $str .= "<br><a href=\"noticia.php/id=$noticia->id\">Ver notícia</a>";
 
                 echo $str . "</div>";
             }
         ?>
-
-        <a href="noticias.php">Veja mais notícias</a>
     </main>
 
     <footer>

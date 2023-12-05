@@ -25,6 +25,7 @@ class Util
 
         if (isset($user)) {
             session_start();
+            $_SESSION['id'] = $user['id'];
             $_SESSION['nome'] = $user['nome'];
             $_SESSION['email'] = $user['email'];
             $_SESSION['perfil'] = $user['perfil'];

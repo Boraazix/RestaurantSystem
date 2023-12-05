@@ -20,9 +20,10 @@
             require_once 'classes/noticiaservices.class.php';
             require_once 'classes/usuarioservices.class.php';
 
-            $noticias = NoticiaServices::buscarTres();
+            if(isset($_GET['id'])){
+                $noticia = NoticiaServices::buscarPorId($_GET['id']);
 
-            foreach($noticias as $noticia) {
+
                 $str = "<div>";
                 $str .= "<h3>$noticia->titulo</h3>";
                 $str .= "$noticia->conteudo";
@@ -32,8 +33,6 @@
                 echo $str . "</div>";
             }
         ?>
-
-        <a href="noticias.php">Veja mais notícias</a>
     </main>
 
     <footer>

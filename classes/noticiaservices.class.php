@@ -16,16 +16,18 @@ class NoticiaServices
         }
     }
 
-    public static function salvar($titulo, $texto, $data)
+    public static function salvar($titulo, $conteudo, $data, $autor)
     {
         self::setupConnection();
 
         $noticia = R::dispense('noticia');
 
-        $noticia = new Noticia($titulo, $texto, $data);
-        $noticiaBean = Noticia::construir($noticia);
+        $noticia->titulo = $titulo;
+        $noticia->conteudo = $conteudo;
+        $noticia->data = $data;
+        $noticia->autor = $autor;
 
-        R::store($noticiaBean);
+        R::store($noticia);
 
         R::close();
     }
@@ -48,5 +50,26 @@ class NoticiaServices
         R::trash('noticia', $id);
 
         R::close();
+    }
+
+    public static function buscarPorId($id)
+    {
+        self::setupConnection();
+
+        $noticia = R::load('noticia', $id);
+
+        R::close();
+
+        return $noticia;
+    }
+
+    public static function buscarTres(){
+        self::setupConnection();
+
+        $noticias = R::findAll('noticia', ' ORDER BY data desc LIMIT 3');
+
+        R::close();
+
+        return $noticias;
     }
 }
