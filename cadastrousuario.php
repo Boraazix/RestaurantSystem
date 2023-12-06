@@ -83,16 +83,13 @@ if ($_SESSION['perfil'] > 2) // ADM e Gerente podem
                 <button type="submit">Cadastrar</button>
             </fieldset>
         </form>
+        <h2>Lista de Usuários</h2>
         <table>
             <thead>
                 <tr>
-                    <th>Id</th>
                     <th>Nome</th>
                     <th>Email</th>
-                    <th>Nascimento</th>
                     <th>Perfil</th>
-                    <th>Carteira</th>
-                    <th>Ativo</th>
                     <th>Opções</th>
                 </tr>
             </thead>
@@ -102,13 +99,9 @@ if ($_SESSION['perfil'] > 2) // ADM e Gerente podem
                 foreach ($usuarios as $usuario) {
                     $str = "<tr>";
 
-                    $str .= "<td>$usuario->id</td>";
                     $str .= "<td>$usuario->nome</td>";
                     $str .= "<td>$usuario->email</td>";
-                    $str .= "<td>" . date('d/m/Y', strtotime($usuario->nascimento)) . "</td>";
                     $str .= "<td>" . PerfilServices::buscarPorId($usuario->perfil)->nome . "</td>";
-                    $str .= "<td " . ($usuario->carteira ? 'style="color:green">Sim' : 'style="color:red">Não') . "</td>";
-                    $str .= "<td " . ($usuario->ativo ? 'style="color:green">Sim' : 'style="color:red">Não') . "</td>";
                     $str .= "<td><a href=\"edicoes/edicaousuario.php?id=$usuario->id\">Editar</a></td>";
 
                     echo $str . "</tr>";

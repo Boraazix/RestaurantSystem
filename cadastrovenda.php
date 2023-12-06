@@ -42,7 +42,29 @@ if($_SESSION['perfil']!=3 && $_SESSION['perfil']!=1) // somente caixa e ADM
         <h1>Cadastro de Vendas</h1>
         
         <div id="alert1" style="display: none;"><label style="color: green;">Venda cadastrada com sucesso.</label><br></div>
-        
+
+        <form action="efetuarvenda.php" method="post">
+            <fieldset>
+                <legend>Dados da Venda</legend>
+
+                <select name="cliente" id="cliente">
+                    <?php
+                    require_once 'classes/usuarioservices.class.php';
+
+                    $usuarios = UsuarioServices::buscarTodos();
+
+                    foreach($usuarios as $usuario){
+                        echo "<option value=\"$usuario->id\">$usuario->nome</option>";
+                    }
+                    ?>
+                </select>
+                <br>
+                <input type="checkbox" name="prazo" id="prazo">
+                <label for="prazo">A prazo</label><br>
+                <button>Iniciar Venda</button>
+            </fieldset>
+        </form>
+
     </main>
 
     <footer>
