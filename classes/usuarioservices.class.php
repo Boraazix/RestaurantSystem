@@ -60,7 +60,7 @@ class UsuarioServices
     {
         self::setupConnection();
 
-        $usuario = R::findAll('usuario');
+        $usuario = R::findAll('usuario', 'ORDER BY nome asc');
 
         R::close();
 
