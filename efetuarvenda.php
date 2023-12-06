@@ -2,15 +2,10 @@
 require_once 'classes/usuarioservices.class.php';
 require_once 'classes/produtoservices.class.php';
 
-$carrinho = [];
-
-if(!isset($_POST['cliente'])){
+if(!isset($_POST['cliente'])) {
     header('index.php');
 }
 
-if(isset($_POST['adicionar'])){
-    $venda = R::dispense('item');
-}
 ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
@@ -29,8 +24,8 @@ if(isset($_POST['adicionar'])){
 
     <main>
         <h1>Cadastro de Vendas</h1>
-        
-        <form method="post">
+
+        <form action="processos/novavenda.php" method="post">
             <fieldset>
                 <legend>Dados da Venda</legend>
 
@@ -39,28 +34,40 @@ if(isset($_POST['adicionar'])){
                 $produtos = ProdutoServices::buscarTodos();
                 ?>
 
-                <p>Venda <?= (isset($_POST['prazo']) ? 'a prazo' : 'à vista') ?> para <?= $cliente->nome ?> por <?= $_SESSION['nome'] ?></p>
+                <p>Venda para
+                    <?= $cliente->nome ?>, por
+                    <?= $_SESSION['nome'] ?>
+                </p>
+                <input type="hidden" name="cliente" value="<?= $_POST['cliente'] ?>">
 
-                <p>Produto:</p>
-                <select name="produto" id="produto">
-                    <?php
-                    foreach($produtos as $produto){
-                        echo "<option value=\"$produto->id\">$produto->nome | R$$produto->preco</option>";
-                    }
-                    ?>
-                </select>
-
-                <label for="quantidade">Quantidade: </label>
-                <input type="number" name="quantidade" id="quantidade">
-                <input type="submit" value="Adicionar" name="adicionar">
-
-                <?php
-                if(isset($_POST['adicionar'])){
-                    echo "<input type=\"hidden\" name=\"carrinho[]\" value=\"$produto\">";
-                }
-                ?>
-
-                <p>Carrinho:</p>
+                <h3>Produtos:</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Produto</th>
+                            <th>Descrição</th>
+                            <th>Preço</th>
+                            <th>Quantidade</th>
+                            <th>Selecionar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        foreach($produtos as $produto) {
+                            echo "<tr>
+                            <td>{$produto['id']}</td>
+                            <td>{$produto['nome']}</td>
+                            <td>{$produto['descricao']}</td>
+                            <td>{$produto['preco']}</td>
+                            <td><input type='number' name='quantidade[{$produto['id']}]' value='1' min='1'></td>
+                            <td><input type='checkbox' name='carrinho[]' value='{$produto['id']}'></td>
+                        </tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+                <br><input type="checkbox" name="avista" id="avista" checked <?=($cliente->carteira?'':'disabled')?>><label for="avista" >À vista</label><br><br>
 
                 <input type="submit" value="Concluir Compra" name="concluir">
             </fieldset>

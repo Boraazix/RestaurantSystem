@@ -2,15 +2,14 @@
 require_once '../classes/util.class.php';
 require_once '../classes/usuarioservices.class.php';
 require_once '../classes/perfilservices.class.php';
-if (!Util::logged()) {
+if(!Util::logged()) {
     header('Location:../login.php');
 }
-if ($_SESSION['perfil'] > 2) // ADM e Gerente podem
+if($_SESSION['perfil'] > 2) // ADM e Gerente podem
 {
     header('Location:../index.php');
 }
-if (!isset($_GET['id'])) 
-{
+if(!isset($_GET['id'])) {
     header('Location:../cadastrousuario.php');
 }
 ?>
@@ -38,43 +37,48 @@ if (!isset($_GET['id']))
                 $usuario = UsuarioServices::buscarPorId($_GET['id']);
                 ?>
                 <label for="idi">Id: </label>
-                <input type="number" name="idi" id="idi" value="<?= $usuario->id?>" disabled style="width: 2rem;"><br>
-                <input type="hidden" name="id" value="<?= $usuario->id?>">
+                <input type="number" name="idi" id="idi" value="<?= $usuario->id ?>" disabled style="width: 2rem;"><br>
+                <input type="hidden" name="id" value="<?= $usuario->id ?>">
                 <label for="nome">Nome: </label>
-                <input type="text" name="nome" id="nome" value="<?= $usuario->nome?>" required><br>
+                <input type="text" name="nome" id="nome" value="<?= $usuario->nome ?>" required><br>
                 <label for="email">Email: </label>
-                <input type="email" name="email" id="email" value="<?= $usuario->email?>" required><br>
+                <input type="email" name="email" id="email" value="<?= $usuario->email ?>" required><br>
                 <label for="senha">Senha: </label>
                 <input type="password" name="senha" id="senha" required><br>
                 <label for="nascimento">Nascimento: </label>
-                <input type="date" name="nascimento" id="nascimento" value="<?= $usuario->nascimento?>" required><br>
+                <input type="date" name="nascimento" id="nascimento" value="<?= $usuario->nascimento ?>" required><br>
                 <label for="perfil">Perfil: </label>
-                <select name="perfil" id="perfil"  required>
+                <select name="perfil" id="perfil" required>
                     <?php
 
                     $perfis = PerfilServices::buscarTodos();
-                    if ($_SESSION['perfil'] == 2) {
-                        foreach ($perfis as $perfil) {
-                            if ($perfil->id > 3)
-                                echo "<option value=\"$perfil->id\" ".($usuario->perfil==$perfil->id?'selected':'').">$perfil->nome</option>";
+                    if($_SESSION['perfil'] == 2) {
+                        foreach($perfis as $perfil) {
+                            if($perfil->id > 3)
+                                echo "<option value=\"$perfil->id\" ".($usuario->perfil == $perfil->id ? 'selected' : '').">$perfil->nome</option>";
                         }
                     } else {
-                        foreach ($perfis as $perfil) {
-                            echo "<option value=\"$perfil->id\" ".($usuario->perfil==$perfil->id?'selected':'').">$perfil->nome</option>";
+                        foreach($perfis as $perfil) {
+                            echo "<option value=\"$perfil->id\" ".($usuario->perfil == $perfil->id ? 'selected' : '').">$perfil->nome</option>";
                         }
                     }
                     ?>
                 </select><br>
-                <input type="checkbox" name="carteira" id="carteira" value="1" <?=($usuario->carteira?'checked':'')?>><label for="carteira">Carteira</label><br>
-                <input type="checkbox" name="ativo" id="ativo" value="1" <?=($usuario->ativo?'checked':'')?>><label for="ativo">Ativo</label><br>
-                <label for="pin">Pin: </label><input type="number" name="pin" id="pin" style="width: 3.5rem;" required min="1000" max="9999"><br>
+                <input type="checkbox" name="carteira" id="carteira" value="1"
+                    <?= ($usuario->carteira ? 'checked' : '') ?>><label for="carteira">Carteira</label><br>
+                <input type="checkbox" name="ativo" id="ativo" value="1" <?= ($usuario->ativo ? 'checked' : '') ?>><label
+                    for="ativo">Ativo</label><br>
+                <label for="pin">Pin: </label><input type="number" name="pin" id="pin" style="width: 3.5rem;" required
+                    min="1000" max="9999"><br>
                 <button type="submit">Salvar alterações</button>
             </fieldset>
         </form>
     </main>
 
     <footer>
-        <?php include 'templates/footer.inc.php' ?>
+        <br><a href="../index.php">Página Inicial</a>
+        <hr>
+        <p>&copy;2023 - Matheus Vieira, Russell Edward & Vitor Gabriel</p>
     </footer>
 </body>
 

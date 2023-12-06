@@ -1,11 +1,10 @@
 <?php
 require_once 'classes/util.class.php';
 require_once 'classes/noticiaservices.class.php';
-if(!Util::logged())
-{
+if(!Util::logged()) {
     header('Location:login.php');
-} 
-if($_SESSION['perfil']!=3 && $_SESSION['perfil']!=1) // somente caixa e ADM
+}
+if($_SESSION['perfil'] != 3 && $_SESSION['perfil'] != 1) // somente caixa e ADM
 {
     header('Location:index.php');
 }
@@ -24,7 +23,18 @@ if($_SESSION['perfil']!=3 && $_SESSION['perfil']!=1) // somente caixa e ADM
             switch($_GET['alert']) {
                 case 1:
                     ?>
-                    #alert1 {display: contents !important;}
+                    #alert1 {
+                        display: contents !important;
+                    }
+
+                    <?php
+                    break;
+                case 2:
+                    ?>
+                    #alert2 {
+                        display: contents !important;
+                    }
+
                     <?php
                     break;
             }
@@ -40,27 +50,26 @@ if($_SESSION['perfil']!=3 && $_SESSION['perfil']!=1) // somente caixa e ADM
 
     <main>
         <h1>Cadastro de Vendas</h1>
-        
+
         <div id="alert1" style="display: none;"><label style="color: green;">Venda cadastrada com sucesso.</label><br></div>
+        <div id="alert2" style="display: none;"><label style="color: red;">Para realizar uma compra, é necessário escolher um produto</label><br></div>
 
         <form action="efetuarvenda.php" method="post">
             <fieldset>
-                <legend>Dados da Venda</legend>
+                <legend>Cliente da Venda</legend>
 
-                <select name="cliente" id="cliente">
+                <select name="cliente" id="cliente" style="width: fit-content;">
                     <?php
                     require_once 'classes/usuarioservices.class.php';
 
                     $usuarios = UsuarioServices::buscarTodos();
 
-                    foreach($usuarios as $usuario){
-                        echo "<option value=\"$usuario->id\">$usuario->nome</option>";
+                    foreach($usuarios as $usuario) {
+                        echo "<option value=\"$usuario->id\">$usuario->id | $usuario->nome</option>";
                     }
                     ?>
                 </select>
                 <br>
-                <input type="checkbox" name="prazo" id="prazo">
-                <label for="prazo">A prazo</label><br>
                 <button>Iniciar Venda</button>
             </fieldset>
         </form>
