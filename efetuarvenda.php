@@ -14,6 +14,9 @@ if(!isset($_POST['cliente'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <title>Sistema do Restaurante</title>
 </head>
 
@@ -22,7 +25,7 @@ if(!isset($_POST['cliente'])) {
         <?php include 'templates/header.inc.php' ?>
     </header>
 
-    <main>
+    <main class="container mt-4">
         <h1>Cadastro de Vendas</h1>
 
         <form action="processos/novavenda.php" method="post">
@@ -70,15 +73,15 @@ if(!isset($_POST['cliente'])) {
                 <?php
                 if($cliente->carteira)
                 {
-                    ?><br><input type="checkbox" name="avista" id="avista" checked><label for="avista" >À vista</label><br><br><?php
+                    ?><div class="form-check mb-3"><input type="checkbox" name="avista" id="avista" checked class="form-check-input"><label for="avista" class="form-check-label">À vista</label></div><?php
                 }
                 else
                 {
-                    ?><br><input type="checkbox" name="avista" id="avista" checked disabled><label for="avista" >À vista</label><br><br><input type="hidden" name="avista" value="on"><?php
+                    ?><div class="form-check mb-3"><input type="checkbox" name="avista" id="avista" checked disabled class="form-check-input"><label for="avista" class="form-check-label">À vista</label><input type="hidden" name="avista" value="on"></div><?php
                 }
                 ?>
 
-                <input type="submit" value="Concluir Compra" name="concluir">
+                <input type="submit" value="Concluir Compra" name="concluir" class="btn btn-danger">
             </fieldset>
         </form>
 

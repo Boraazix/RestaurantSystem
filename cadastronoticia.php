@@ -1,10 +1,10 @@
 <?php
 require_once 'classes/util.class.php';
 require_once 'classes/noticiaservices.class.php';
-if(!Util::logged()) {
+if (!Util::logged()) {
     header('Location:login.php');
 }
-if($_SESSION['perfil'] > 2) // ADM e Gerente podem
+if ($_SESSION['perfil'] > 2) // ADM e Gerente podem
 {
     header('Location:index.php');
 }
@@ -18,11 +18,14 @@ if($_SESSION['perfil'] > 2) // ADM e Gerente podem
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tiny.cloud/1/gxuhx0gkfdgl1ea1o40a4ul185r55j4iv6iy0p4n1exxe97z/tinymce/6/tinymce.min.js"
         referrerpolicy="origin"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <title>Sistema do Restaurante</title>
     <style>
         <?php
-        if(isset($_GET['alert'])) {
-            switch($_GET['alert']) {
+        if (isset($_GET['alert'])) {
+            switch ($_GET['alert']) {
                 case 1:
                     ?>
                     #alert1 {
@@ -42,19 +45,31 @@ if($_SESSION['perfil'] > 2) // ADM e Gerente podem
         <?php include 'templates/header.inc.php' ?>
     </header>
 
-    <main>
+    <main class="container mt-5">
         <h1>Cadastro de Notícias</h1>
 
-        <form action="processos/novanoticia.php" method="post">
+        <form action="processos/novanoticia.php" method="post" class="mt-4">
 
-            <div id="alert1" style="display: none;"><label style="color: green;">Notícia cadastrada com
-                    sucesso.</label><br></div>
+            <div id="alert1" style="display: none;">
+                <div class="alert alert-success" role="alert">
+                    Notícia cadastrada com sucesso.
+                </div>
+            </div>
             <fieldset>
                 <legend>Dados</legend>
 
-                <input type="text" name="titulo" id="titulo" placeholder="Título da Notícia" required><br>
-                <input type="text" name="resumo" id="resumo" style="width: 25rem" placeholder="Resumo do conteúdo"
-                    required>
+                <div class="mb-3">
+                    <label for="titulo" class="form-label">Título da Notícia:</label>
+                    <input type="text" name="titulo" id="titulo" class="form-control" placeholder="Título da Notícia"
+                        required>
+                </div>
+                
+                <div class="mb-3">
+                    <label for="resumo" class="form-label">Resumo do conteúdo:</label>
+                    <input type="text" name="resumo" id="resumo" class="form-control" style="width: 25rem"
+                        placeholder="Resumo do conteúdo" required>
+                </div>
+
                 <input type="hidden" name="id" value="<?= $_SESSION['id'] ?>">
 
                 <script>
@@ -74,7 +89,7 @@ if($_SESSION['perfil'] > 2) // ADM e Gerente podem
                 </script>
                 <textarea name="conteudo" id="conteudo" placeholder="Escreva a notícia aqui!"></textarea>
 
-                <button type="submit">Postar</button>
+                <button type="submit" class="btn btn-danger mt-3">Postar</button>
             </fieldset>
         </form>
     </main>

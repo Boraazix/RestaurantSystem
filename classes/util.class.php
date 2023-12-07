@@ -1,5 +1,5 @@
 <?php
-
+require_once 'r.class.php';
 class Util
 {
     private static function setupConnection()
