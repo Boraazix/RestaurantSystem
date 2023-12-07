@@ -2,6 +2,16 @@
 
 class Util
 {
+    private static function setupConnection()
+    {
+        if (!R::testConnection()) {
+            R::setup(
+                'mysql:host=localhost;dbname=restaurante',
+                'root',
+                ''
+            );
+        }
+    }
     public static function logout()
     {
         if(!isset($_SESSION)) session_start();
@@ -17,9 +27,9 @@ class Util
 
     public static function autenticar($email, $senha)
     {
-        require_once 'r.class.php';
+        self::setupConnection();
 
-        R::setup('mysql:host=localhost;dbname=restaurante', 'root', '');
+        require_once 'r.class.php';
 
         $usuario = R::findOne('usuario', 'email = ? and senha = ?', [$email, md5($senha . 'antagonista')]);
 
@@ -53,15 +63,17 @@ class Util
 
     public static function validarPin($id, $pin)
     {
-        require_once 'r.class.php';
+        self::setupConnection();
 
-        R::setup('mysql:host=localhost;dbname=restaurante', 'root', '');
+        require_once 'r.class.php';
 
         $usuario = R::load('usuario', $id);
 
         if(md5($pin . 'antagonista')==$usuario['pin'])
+        {
             return true;
-        
+        }
         return false;
+
     }
 }

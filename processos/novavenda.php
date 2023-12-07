@@ -13,7 +13,6 @@ if(empty($_POST['cliente'])) {
 }
 if(!empty($_POST['avista'])) // se for a vista
 {
-    echo 'aaaaaaaaaaaaaaaa';
     if(empty($_POST['pin']) || Util::validarPin($_POST['cliente'], $_POST['pin'])) {
         if(!empty($_POST['carrinho'])) {
             date_default_timezone_set('America/Fortaleza');
@@ -53,7 +52,6 @@ if(!empty($_POST['avista'])) // se for a vista
         ?>
     </style>
 </head>
-
 <body>
     <header>
     </header>
@@ -99,3 +97,4 @@ if(!empty($_POST['avista'])) // se for a vista
 </body>
 
 </html>
+<?php R::close(); ?>

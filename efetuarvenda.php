@@ -67,7 +67,16 @@ if(!isset($_POST['cliente'])) {
                         ?>
                     </tbody>
                 </table>
-                <br><input type="checkbox" name="avista" id="avista" checked <?=($cliente->carteira?'':'disabled')?>><label for="avista" >À vista</label><br><br>
+                <?php
+                if($cliente->carteira)
+                {
+                    ?><br><input type="checkbox" name="avista" id="avista" checked><label for="avista" >À vista</label><br><br><?php
+                }
+                else
+                {
+                    ?><br><input type="checkbox" name="avista" id="avista" checked disabled><label for="avista" >À vista</label><br><br><input type="hidden" name="avista" value="on"><?php
+                }
+                ?>
 
                 <input type="submit" value="Concluir Compra" name="concluir">
             </fieldset>
