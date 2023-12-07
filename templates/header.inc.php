@@ -55,7 +55,7 @@ require_once dirname(__DIR__) . '/classes/util.class.php';
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="cadastrovenda.php" <?php if ($_SESSION['perfil'] != 3)
+                            <a class="nav-link" href="cadastrovenda.php" <?php if ($_SESSION['perfil'] > 3)
                                 echo "hidden"; ?>>Cadastro de Vendas</a>
                         </li>
 
@@ -74,8 +74,8 @@ require_once dirname(__DIR__) . '/classes/util.class.php';
                                     echo "hidden"; ?>>Relatório de Perfis <br></a>
                                 </li>
 
-                                <li><a class="dropdown-item" href="relatoriodebitos.php" <?php if ($_SESSION['perfil'] != 3)
-                                    echo "hidden"; ?>>Relatório de Débitos</a>></li>
+                                <li><a class="dropdown-item" href="relatoriodebitos.php" <?php if ($_SESSION['perfil'] > 3)
+                                    echo "hidden"; ?>>Relatório de Vendas</a>></li>
                             </ul>
                         </li>
 

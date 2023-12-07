@@ -37,7 +37,7 @@ class VendaServices
     {
         self::setupConnection();
 
-        $vendas = R::findAll('venda');
+        $vendas = R::findAll('venda',  ' ORDER BY data_venda desc ');
 
         R::close();
 
@@ -106,5 +106,28 @@ class VendaServices
         R::close();
 
         return $venda;
+    }
+
+    public static function buscarTres(){
+        self::setupConnection();
+
+        $vendas = R::findAll('venda', ' ORDER BY data_venda desc LIMIT 3');
+
+        R::close();
+
+        return $vendas;
+    }
+
+    public static function quitar($id){
+        date_default_timezone_set('America/Fortaleza');
+        self::setupConnection();
+
+        $venda = R::load('venda', $id);
+
+        $venda->data_pagamento = new DateTime();
+
+        R::store($venda);
+
+        R::close();
     }
 }
