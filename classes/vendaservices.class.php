@@ -59,7 +59,7 @@ class VendaServices
     {
         self::setupConnection();
 
-        $vendas = R::findAll('venda', ' WHERE cliente = ? AND dataPagamento IS NULL ', [$cliente]);
+        $vendas = R::findAll('venda', ' WHERE cliente = ? AND data_pagamento IS NULL ', [$cliente]);
 
         R::close();
 
@@ -70,7 +70,7 @@ class VendaServices
     {
         self::setupConnection();
 
-        $vendas = R::findAll('venda', ' WHERE dataPagamento IS NULL ');
+        $vendas = R::findAll('venda', ' WHERE data_pagamento IS NULL ');
 
         R::close();
 

@@ -58,32 +58,7 @@ if ($_SESSION['perfil'] != 3 && $_SESSION['perfil'] != 1) // somente caixa e ADM
     </header>
 
     <main>
-        <h1>Relatório de Vendas</h1>
-
-        <form action="venda.php" method="post" class="mt-4">
-            <fieldset>
-                <legend>Cliente da Venda</legend>
-
-                <div class="mb-3">
-                    <label for="cliente" class="form-label">Selecione o cliente:</label>
-                    <select name="cliente" id="cliente" class="form-select">
-                        <?php
-                        require_once 'classes/usuarioservices.class.php';
-
-                        $usuarios = UsuarioServices::buscarTodos();
-
-                        foreach ($usuarios as $usuario) {
-                            echo "<option value=\"$usuario->id\">$usuario->id | $usuario->nome</option>";
-                        }
-                        ?>
-                    </select>
-                </div>
-
-                <button type="submit" class="btn btn-danger">Buscar Vendas</button><br>
-            </fieldset>
-        </form><br>
-
-        <a href="vendasaberto.php" class="btn btn-danger">Ver todas as vendas em aberto</a><br><br>
+        <h1>Vendas em Aberto</h1>
 
         <div id="alert1" style="display: none;">
             <div class="alert alert-success" role="alert">
@@ -93,7 +68,7 @@ if ($_SESSION['perfil'] != 3 && $_SESSION['perfil'] != 1) // somente caixa e ADM
 
         <div class="row row-cols-1 row-cols-md-2 g-4">
             <?php
-            $vendas = VendaServices::buscarTodos();
+            $vendas = VendaServices::buscarTodosEmAberto();
 
             foreach ($vendas as $venda) {
                 $vendedor = UsuarioServices::buscarPorId($venda->vendedor);
