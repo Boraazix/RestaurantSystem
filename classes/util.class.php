@@ -58,7 +58,6 @@ class Util
             header('Location:login.php?alert=1');
         }
 
-        R::close();
     }
 
     public static function validarPin($id, $pin)

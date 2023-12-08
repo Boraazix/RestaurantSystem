@@ -1,4 +1,5 @@
 <?php
+require_once '../classes/r.class.php';
 require_once '../classes/util.class.php';
 require_once '../classes/produtoservices.class.php';
 require_once '../classes/itemservices.class.php';

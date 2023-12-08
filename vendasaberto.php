@@ -1,4 +1,5 @@
 <?php
+require_once 'classes/r.class.php';
 require_once 'classes/util.class.php';
 require_once 'classes/vendaservices.class.php';
 require_once 'classes/usuarioservices.class.php';
@@ -103,3 +104,4 @@ if ($_SESSION['perfil'] != 3 && $_SESSION['perfil'] != 1) // somente caixa e ADM
 </body>
 
 </html>
+<?php R::close(); ?>

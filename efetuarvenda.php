@@ -1,4 +1,5 @@
 <?php
+require_once 'classes/r.class.php';
 require_once 'classes/usuarioservices.class.php';
 require_once 'classes/produtoservices.class.php';
 
@@ -93,3 +94,4 @@ if(!isset($_POST['cliente'])) {
 </body>
 
 </html>
+<?php R::close(); ?>

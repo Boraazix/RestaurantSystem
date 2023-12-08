@@ -1,4 +1,5 @@
 <?php
+require_once '../classes/r.class.php';
 require_once '../classes/util.class.php';
 require_once '../classes/usuarioservices.class.php';
 require_once '../classes/perfilservices.class.php';
@@ -125,3 +126,4 @@ if(!isset($_GET['id'])) {
 </body>
 
 </html>
+<?php R::close(); ?>

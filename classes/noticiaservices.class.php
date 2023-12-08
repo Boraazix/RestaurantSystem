@@ -29,7 +29,6 @@ class NoticiaServices
 
         R::store($noticia);
 
-        R::close();
     }
 
     public static function buscarTodos()
@@ -38,7 +37,6 @@ class NoticiaServices
 
         $noticias = R::findAll('noticia');
 
-        R::close();
 
         return $noticias;
     }
@@ -49,7 +47,6 @@ class NoticiaServices
 
         $noticias = R::findAll('noticia', ' ORDER BY data desc');
 
-        R::close();
 
         return $noticias;
     }
@@ -60,7 +57,6 @@ class NoticiaServices
 
         R::trash('noticia', $id);
 
-        R::close();
     }
 
     public static function buscarPorId($id)
@@ -69,7 +65,6 @@ class NoticiaServices
 
         $noticia = R::load('noticia', $id);
 
-        R::close();
 
         return $noticia;
     }
@@ -79,7 +74,6 @@ class NoticiaServices
 
         $noticias = R::findAll('noticia', ' ORDER BY data desc LIMIT 3');
 
-        R::close();
 
         return $noticias;
     }

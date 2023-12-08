@@ -27,7 +27,6 @@ class ItemServices
 
         R::store($item);
 
-        R::close();
     }
 
     public static function buscarTodos()
@@ -36,7 +35,6 @@ class ItemServices
 
         $itens = R::findAll('item');
 
-        R::close();
 
         return $itens;
     }
@@ -47,7 +45,6 @@ class ItemServices
 
         $itens = R::findAll('venda', ' WHERE venda = ? ', [$venda]);
 
-        R::close();
 
         return $itens;
     }
@@ -58,7 +55,6 @@ class ItemServices
 
         R::trash('item', $id);
 
-        R::close();
     }
 
     public static function buscarPorId($id)
@@ -67,7 +63,6 @@ class ItemServices
 
         $item = R::load('item', $id);
 
-        R::close();
 
         return $item;
     }

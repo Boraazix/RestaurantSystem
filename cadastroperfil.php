@@ -1,4 +1,5 @@
 <?php
+require_once 'classes/r.class.php';
 require_once 'classes/util.class.php';
 require_once 'classes/perfilservices.class.php';
 if (!Util::logged()) {
@@ -76,3 +77,5 @@ if ($_SESSION['perfil'] != 1) // somente ADM
 </body>
 
 </html>
+
+<?php R::close(); ?>

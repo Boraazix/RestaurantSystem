@@ -28,7 +28,6 @@ class VendaServices
 
         $id = R::store($venda);
 
-        R::close();
 
         return $id;
     }
@@ -39,7 +38,6 @@ class VendaServices
 
         $vendas = R::findAll('venda',  ' ORDER BY data_venda desc ');
 
-        R::close();
 
         return $vendas;
     }
@@ -50,7 +48,6 @@ class VendaServices
 
         $vendas = R::findAll('venda', ' WHERE cliente = ? ', [$cliente]);
 
-        R::close();
 
         return $vendas;
     }
@@ -61,7 +58,6 @@ class VendaServices
 
         $vendas = R::findAll('venda', ' WHERE cliente = ? AND data_pagamento IS NULL ', [$cliente]);
 
-        R::close();
 
         return $vendas;
     }
@@ -72,7 +68,6 @@ class VendaServices
 
         $vendas = R::findAll('venda', ' WHERE data_pagamento IS NULL ');
 
-        R::close();
 
         return $vendas;
     }
@@ -83,7 +78,6 @@ class VendaServices
 
         $vendas = R::findAll('venda', ' WHERE vendedor = ? ', [$vendedor]);
 
-        R::close();
 
         return $vendas;
     }
@@ -94,7 +88,6 @@ class VendaServices
 
         R::trash('venda', $id);
 
-        R::close();
     }
 
     public static function buscarPorId($id)
@@ -103,7 +96,6 @@ class VendaServices
 
         $venda = R::load('venda', $id);
 
-        R::close();
 
         return $venda;
     }
@@ -113,7 +105,6 @@ class VendaServices
 
         $vendas = R::findAll('venda', ' ORDER BY data_venda desc LIMIT 3');
 
-        R::close();
 
         return $vendas;
     }
@@ -128,6 +119,5 @@ class VendaServices
 
         R::store($venda);
 
-        R::close();
     }
 }

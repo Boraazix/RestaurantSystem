@@ -27,7 +27,6 @@ class ProdutoServices
 
         R::store($produto);
 
-        R::close();
     }
 
     public static function buscarTodos()
@@ -36,7 +35,6 @@ class ProdutoServices
 
         $produtos = R::findAll('produto');
 
-        R::close();
 
         return $produtos;
     }
@@ -47,7 +45,6 @@ class ProdutoServices
 
         $produtos = R::findAll('produto', ' ORDER BY nome asc ');
 
-        R::close();
 
         return $produtos;
     }
@@ -58,7 +55,6 @@ class ProdutoServices
 
         R::trash('produto', $id);
 
-        R::close();
     }
 
     public static function buscarPorId($id)
@@ -67,7 +63,6 @@ class ProdutoServices
 
         $produto = R::load('produto', $id);
 
-        R::close();
 
         return $produto;
     }

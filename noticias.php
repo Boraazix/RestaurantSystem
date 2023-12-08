@@ -1,3 +1,4 @@
+<?php require_once 'classes/r.class.php'; ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -64,3 +65,4 @@
 </body>
 
 </html>
+<?php R::close(); ?>

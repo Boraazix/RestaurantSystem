@@ -25,7 +25,6 @@ class PerfilServices
 
         R::store($perfil);
 
-        R::close();
     }
 
     public static function buscarTodos()
@@ -34,7 +33,6 @@ class PerfilServices
 
         $perfis = R::findAll('perfil');
 
-        R::close();
 
         return $perfis;
     }
@@ -45,7 +43,6 @@ class PerfilServices
 
         R::trash('perfil', $id);
 
-        R::close();
     }
 
     public static function buscarPorId($id)
@@ -54,7 +51,6 @@ class PerfilServices
 
         $perfil = R::load('perfil', $id);
 
-        R::close();
         
         return $perfil;
     }

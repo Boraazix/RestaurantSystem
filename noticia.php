@@ -1,4 +1,5 @@
 <?php
+require_once 'classes/r.class.php';
 if (!isset($_GET['id'])) {
     header('Location:noticias.php');
 }
@@ -60,3 +61,4 @@ if (!isset($_GET['id'])) {
 </body>
 
 </html>
+<?php R::close(); ?>

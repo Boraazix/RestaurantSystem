@@ -1,3 +1,4 @@
+<?php include_once("classes/r.class.php"); ?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -67,9 +68,10 @@
         <a href="noticias.php" class="btn btn-secondary mt-4">Veja mais notícias</a>
     </main>
 
-    <footer class="mt-4">
+    <footer class="bg-light text-center mt-5 py-3">
         <p>&copy;2023 - Matheus Vieira, Russell Edward & Vitor Gabriel</p>
     </footer>
 </body>
 
 </html>
+<?php R::close(); ?>

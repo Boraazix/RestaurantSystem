@@ -1,4 +1,5 @@
 <?php
+require_once 'classes/r.class.php';
 require_once 'classes/util.class.php';
 if (!Util::logged()) {
     header('Location:login.php');
@@ -78,3 +79,5 @@ if ($_SESSION['perfil'] > 2) // ADM e Gerente podem
 </body>
 
 </html>
+
+<?php R::close(); ?>

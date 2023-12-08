@@ -32,7 +32,6 @@ class UsuarioServices
 
         R::store($usuario);
 
-        R::close();
     }
     
     public static function atualizar($id, $nome, $email, $senha, $nascimento, $perfil, $carteira, $ativo, $pin)
@@ -53,7 +52,6 @@ class UsuarioServices
 
         R::store($usuarioEditado);
 
-        R::close();
     }
 
     public static function buscarTodos()
@@ -62,7 +60,6 @@ class UsuarioServices
 
         $usuario = R::findAll('usuario', 'ORDER BY nome asc');
 
-        R::close();
 
         return $usuario;
     }
@@ -73,7 +70,6 @@ class UsuarioServices
 
         R::trash('usuario', $id);
 
-        R::close();
     }
 
     public static function buscarPorId($id)
@@ -82,7 +78,6 @@ class UsuarioServices
 
         $usuario = R::load('usuario', $id);
 
-        R::close();
 
         return $usuario;
     }
