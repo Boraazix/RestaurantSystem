@@ -5,8 +5,6 @@ require_once '../classes/itemservices.class.php';
 require_once '../classes/vendaservices.class.php';
 require_once '../classes/usuarioservices.class.php';
 
-echo md5('1234' . 'antagonista');
-
 if(!Util::logged()) {
     header('Location:login.php');
 }
@@ -41,6 +39,9 @@ if(!empty($_POST['avista'])) // se for a vista
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <title>Sistema do Restaurante</title>
     <style>
         <?php
@@ -58,7 +59,7 @@ if(!empty($_POST['avista'])) // se for a vista
     <header>
     </header>
 
-    <main>
+    <main class="container mt-5">
         <h1>PIN</h1>
 
         <div id="alert1" style="display: none;"><label style="color: red;">PIN incorreto!</label><br></div>
@@ -69,9 +70,12 @@ if(!empty($_POST['avista'])) // se for a vista
                 <?php
                 $cliente = UsuarioServices::buscarPorId($_POST['cliente']);
                 ?>
-                <label for="pin">Pin: </label><input type="number" style="width: 3.5rem;" required name="pin" id="pin" min="1000" max="9999">
+                <div class="mb-3">
+                    <br><label for="pin" class="form-label">Pin: </label>
+                    <input type="number" style="width: 5rem;" required class="form-control" name="pin">
+                </div>
 
-                <input type="submit" value="Concluir Compra">
+                <input type="submit" class="btn btn-danger" value="Concluir Compra">
 
                 <input type="hidden" name="cliente" value="<?= $_POST['cliente'] ?>">
                 <input type="hidden" name="avista" value="on">
@@ -91,7 +95,7 @@ if(!empty($_POST['avista'])) // se for a vista
 
     </main>
 
-    <footer>
+    <footer class="bg-light text-center mt-5 py-3">
         <br><a href="../index.php">Página Inicial</a>
         <hr>
         <p>&copy;2023 - Matheus Vieira, Russell Edward & Vitor Gabriel</p>

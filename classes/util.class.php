@@ -33,7 +33,7 @@ class Util
 
         $usuario = R::findOne('usuario', 'email = ? and senha = ?', [$email, md5($senha . 'antagonista')]);
 
-        if (isset($usuario)) {
+        if ($email != 'anonimo@mail' && isset($usuario)) {
 
 
             if(!$usuario['ativo'])

@@ -5,6 +5,7 @@
 
     R::setup('mysql:host=localhost;dbname=restaurante', 'root', '');
 
+    UsuarioServices::salvar('Anônimo', 'anonimo@mail', '', '1111-11-11', 4, false, true, '');
     UsuarioServices::salvar('Simba', 'simba@mail', '123', date('Y-m-d'), 1, false, true, 1234);
 
     PerfilServices::salvar("Administrador");

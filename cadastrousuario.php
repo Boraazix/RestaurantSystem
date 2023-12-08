@@ -149,7 +149,7 @@ if ($_SESSION['perfil'] > 2) // ADM e Gerente podem
                         $str .= "<td>$usuario->nome</td>";
                         $str .= "<td>$usuario->email</td>";
                         $str .= "<td>" . PerfilServices::buscarPorId($usuario->perfil)->nome . "</td>";
-                        $str .= "<td><a href=\"edicoes/edicaousuario.php?id=$usuario->id\">Editar</a></td>";
+                        $str .= "<td>".($usuario->id==1?"":"<a href=\"edicoes/edicaousuario.php?id=$usuario->id\">Editar</a>")."</td>";
 
                         echo $str . "</tr>";
                     }
