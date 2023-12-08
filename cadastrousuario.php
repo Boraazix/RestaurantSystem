@@ -115,13 +115,13 @@ if ($_SESSION['perfil'] > 2) // ADM e Gerente podem
                 </div>
 
                 <div class="mb-3 form-check">
-                    <input type="checkbox" name="ativo" id="ativo" value="1" class="form-check-input">
+                    <input type="checkbox" name="ativo" id="ativo" value="1" class="form-check-input" checked>
                     <label for="ativo" class="form-check-label">Ativo</label><br>
                 </div>
 
                 <div class="mb-3">
                     <label for="pin" class="form-label">Pin: </label>
-                    <input type="number" style="width: 5rem;" required class="form-control"><br>
+                    <input type="number" style="width: 5rem;" required class="form-control" name="pin"><br>
                 </div>
 
                 <button type="submit" class="btn btn-danger">Cadastrar</button>

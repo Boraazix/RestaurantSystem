@@ -5,6 +5,8 @@ require_once '../classes/itemservices.class.php';
 require_once '../classes/vendaservices.class.php';
 require_once '../classes/usuarioservices.class.php';
 
+echo md5('1234' . 'antagonista');
+
 if(!Util::logged()) {
     header('Location:login.php');
 }
